@@ -88,14 +88,26 @@ typedef struct {
 
 #define FR2SQ(f,r) ((21 + (f)) + ((r) * 10))// File and rank to 120 SQR
 #define SQ64(sq120) sq120ToSq64[sq120]
+#define POP(b) PopBit(b)
+#define CNT(b) CountBits(b);
+#define CLRBIT(bb,sq) ((bb) &= clearMask[(sq)])
+#define SETBIT(bb,sq) ((bb) |= setMask[(sq)])
 
 /* GLOBALS */
 extern int sq120ToSq64[BRD_SQ_NUM];
 extern int sq64ToSq120[64];
+extern U64 setMask[64];
+extern U64 clearMask[64];
 
 /* FUNCTIONS */
 
-void InitSq120To64();
+// init.c
+void AllInit();
+
+// bitboards.c
 void PrintBitBoard();
+extern int CountBits(U64 b);
+extern int PopBit(U64 *bb);
+
 
 #endif // DEF_H
